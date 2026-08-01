@@ -9,20 +9,20 @@ const projects = [
       "A full-stack e-commerce platform with product listings, cart, secure checkout and an admin dashboard to manage orders.",
     tags: ["React", "Node.js", "Express.js", "MongoDB"],
     image:
-      "",
+      "https://i.pinimg.com/1200x/76/27/3d/76273dd8378c16df9aa23f4483f49231.jpg",
     live: "https://prajanya-healthcares.onrender.com/",
     github: "#",
     accent: "#22d3ee",
   },
   {
-    title: "Wander Way Travel Webpage",
+    title: "Vogue Fashion Website",
     description:
-      "A Trello-style task management tool with drag-and-drop boards, real-time updates and team collaboration features.",
-    tags: ["React", "Tailwind CSS", "REST API"],
+      "A modern fashion e-commerce website where users can buy products and also add their own products for sale.",
+    tags: ["HTML" , "CSS" , "JS"],
     image:
-      "https://vansh-verma-web-developer.onrender.com/assits/WonderTrip.png",
-    live: "https://wanderway-travel-website.onrender.com",
-    github: "https://github.com/vansh-verma-dev/wanderway-travel-website",
+      "https://i.pinimg.com/1200x/20/78/09/20780957dc1fbdade8e5b42f2f92c4d2.jpg",
+    live: "https://vogue-fashion-vansh.onrender.com",
+    github: "https://github.com/vansh-verma-dev/vogue-fashion-vansh",
     accent: "#8b5cf6",
   },
   {
