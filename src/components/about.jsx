@@ -1,4 +1,5 @@
 import React from "react";
+import vanshu from "../assets/vanshu.jpeg";
 
 function About() {
   const stats = [
@@ -9,9 +10,10 @@ function About() {
   ];
 
   return (
-    <div  
-    id="about"
-    className="bg-[#0a0e0f] min-h-screen w-full px-6 py-16 md:px-16 lg:px-24">
+    <div
+      id="about"
+      className="bg-[#0a0e0f] min-h-screen w-full px-6 py-16 md:px-16 lg:px-24"
+    >
       {/* Header */}
       <header className="mb-16 max-w-3xl">
         <p className="font-mono text-teal-400 text-sm tracking-widest mb-3">
@@ -27,21 +29,23 @@ function About() {
 
       {/* Content */}
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start max-w-6xl">
-        {/* Image card styled like a terminal window */}
-        <div className="w-full max-w-[400px] mx-auto lg:mx-0 shrink-0">
-          <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#111417] shadow-2xl shadow-black/40">
-            {/* fake title bar */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-[#15181b]">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-              <span className="ml-3 font-mono text-[11px] text-gray-500 truncate">
-                ~/vansh-verma/photo.jpg
-              </span>
-            </div>
-            {/* image placeholder */}
-            <div className="h-[350px] flex items-center justify-center bg-gradient-to-br from-[#151a1b] to-[#0d1112]">
-              <p className="font-mono text-gray-600 text-sm">// image goes here</p>
+        {/* Image card - premium modern look */}
+        <div className="relative w-full max-w-[400px] mx-auto lg:mx-0 shrink-0 group">
+          {/* soft glow only behind the photo, nothing else */}
+          <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-teal-400 via-cyan-500 to-violet-600 opacity-20 blur-2xl group-hover:opacity-40 transition-all duration-700" />
+
+          <div className="relative   overflow-hidden border border-white/10 bg-[#111417] shadow-2xl shadow-black/50" 
+          id="images"
+          >
+            {/* image */}
+            <div className="h-[420px] overflow-hidden">
+              <img
+                src={vanshu}
+                alt="Vansh Verma"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* subtle bottom fade for depth */}
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0e0f] to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
@@ -59,11 +63,14 @@ function About() {
 
           <p className="text-gray-400 text-base md:text-lg leading-relaxed mt-5">
             I believe in clean code, thoughtful design, and
-            performance-focused engineering. When I'm not writing code, you'll
-            find me exploring new technologies or contributing to open-source
-            projects.
+            performance-focused engineering. When I'm not writing code,
+            you'll find me exploring new technologies or contributing to
+            open-source projects.
           </p>
 
+          {/* Resume Button */}
+          
+            
           {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-white/10">
             {stats.map((stat, i) => (

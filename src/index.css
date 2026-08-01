@@ -1,17 +1,72 @@
  @import "tailwindcss";
 
 
-@theme {
-  --font-display: "Outfit", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-}
+ @theme {
+   --font-display: "Outfit", sans-serif;
+   --font-mono: "JetBrains Mono", monospace;
+ }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+ @keyframes float {
+
+   0%,
+   100% {
+     transform: translateY(0);
+   }
+
+   50% {
+     transform: translateY(-14px);
+   }
+ }
+
+ @keyframes gradientFlow {
+   0% {
+     background-position: 0% 50%;
+   }
+
+   50% {
+     background-position: 100% 50%;
+   }
+
+   100% {
+     background-position: 0% 50%;
+   }
+ }
+
+ @keyframes float {
+
+   0%,
+   100% {
+     transform: translateY(0px);
+   }
+
+   50% {
+     transform: translateY(-12px);
+   }
+ }
+
+ @keyframes scan {
+   0% {
+     transform: translateY(-20px);
+     opacity: 0;
+   }
+
+   20% {
+     opacity: 1;
+   }
+
+   80% {
+     opacity: 1;
+   }
+
+   100% {
+     transform: translateY(560px);
+     opacity: 0;
+   }
+ }
+
+ #images {
+   border-top-left-radius: 60px;
+   border-bottom-right-radius: 60px;
+   border-top-right-radius: 10px;
+   border-bottom-left-radius: 10px;
+ }
