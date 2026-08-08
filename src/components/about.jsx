@@ -1,11 +1,29 @@
 import { useEffect, useRef, useState } from "react";
-import { FiCode, FiLayers, FiAward, FiSmile, FiArrowUpRight } from "react-icons/fi";
+import { FiCode, FiLayers, FiZap, FiDownload, FiArrowUpRight } from "react-icons/fi";
+
+const features = [
+  {
+    icon: FiLayers,
+    title: "End-to-End Ownership",
+    desc: "From MongoDB schema design to a deployed, polished UI — I own the full stack of a feature, not just one layer of it.",
+  },
+  {
+    icon: FiCode,
+    title: "Clean, Scalable Code",
+    desc: "Code that's easy to read, test, and extend. I write for the next developer who touches it — often that's future me.",
+  },
+  {
+    icon: FiZap,
+    title: "Fast, Reliable Delivery",
+    desc: "I ship quickly without cutting corners on performance, security, or the small details that make a product feel solid.",
+  },
+];
 
 const stats = [
-  { icon: FiCode, value: 30, suffix: "+", label: "Projects Completed" },
-  { icon: FiLayers, value: 8, suffix: "+", label: "Technologies" },
-  { icon: FiAward, value: 2, suffix: "+", label: "Years Experience" },
-  { icon: FiSmile, value: 100, suffix: "%", label: "Client Satisfaction" },
+  { value: 30, suffix: "+", label: "Projects Completed" },
+  { value: 8, suffix: "+", label: "Technologies" },
+  { value: 2, suffix: "+", label: "Years Experience" },
+  { value: 100, suffix: "%", label: "Client Satisfaction" },
 ];
 
 function useInView() {
@@ -22,7 +40,7 @@ function useInView() {
           observer.disconnect();
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.2 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -57,19 +75,9 @@ function Counter({ value, suffix, inView }) {
 }
 
 export default function About() {
-  const [leftRef, leftInView] = useInView();
-  const [rightRef, rightInView] = useInView();
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0, gx: 50, gy: 50 });
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const ry = ((x / rect.width) - 0.5) * 16;
-    const rx = -((y / rect.height) - 0.5) * 16;
-    setTilt({ rx, ry, gx: (x / rect.width) * 100, gy: (y / rect.height) * 100 });
-  };
-  const handleMouseLeave = () => setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 });
+  const [headRef, headInView] = useInView();
+  const [cardsRef, cardsInView] = useInView();
+  const [statsRef, statsInView] = useInView();
 
   return (
     <section
@@ -81,39 +89,34 @@ export default function About() {
           from { opacity: 0; transform: translateY(22px); filter: blur(6px); }
           to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-        @keyframes fadeRight {
-          from { opacity: 0; transform: translateX(24px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes floatCard {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
         @keyframes floatBlob {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(20px, -18px) scale(1.05); }
         }
+        @keyframes floatBlob2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-18px, 16px) scale(1.06); }
+        }
         .reveal-item { opacity: 0; }
         .in-view .reveal-item { animation: fadeUpBlur 0.75s ease forwards; }
-        .reveal-right { opacity: 0; }
-        .reveal-right.in-view { animation: fadeRight 0.8s ease forwards; }
-        .anim-floatCard { animation: floatCard 4s ease-in-out infinite; }
-        .anim-blob { animation: floatBlob 11s ease-in-out infinite; }
+        .anim-blob1 { animation: floatBlob 11s ease-in-out infinite; }
+        .anim-blob2 { animation: floatBlob2 13s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) {
-          .reveal-item, .reveal-right { opacity: 1 !important; }
-          .in-view .reveal-item, .reveal-right.in-view, .anim-floatCard, .anim-blob {
+          .reveal-item { opacity: 1 !important; }
+          .in-view .reveal-item, .anim-blob1, .anim-blob2 {
             animation: none !important; transform: none !important; filter: none !important;
           }
         }
       `}</style>
 
       {/* ambient backdrop, consistent with hero */}
-      <div className="pointer-events-none absolute -top-24 left-0 h-[24rem] w-[24rem] rounded-full bg-blue-200/30 blur-3xl anim-blob" />
+      <div className="pointer-events-none absolute -top-24 left-0 h-[24rem] w-[24rem] rounded-full bg-blue-200/30 blur-3xl anim-blob1" />
+      <div className="pointer-events-none absolute -bottom-24 right-0 h-[22rem] w-[22rem] rounded-full bg-indigo-200/30 blur-3xl anim-blob2" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#0000000a_1px,transparent_1px)] [background-size:32px_32px]" />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-        {/* Left — main content */}
-        <div ref={leftRef} className={leftInView ? "in-view" : ""}>
+      <div className="relative z-10 mx-auto max-w-5xl">
+        {/* Heading + bio */}
+        <div ref={headRef} className={`mx-auto max-w-2xl text-center ${headInView ? "in-view" : ""}`}>
           <div
             className="reveal-item mb-6 inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-50 px-4 py-2 text-xs font-medium text-blue-700"
             style={{ animationDelay: "0.05s" }}
@@ -133,124 +136,88 @@ export default function About() {
           </h2>
 
           <p
-            className="reveal-item mb-4 text-slate-600 leading-relaxed"
+            className="reveal-item mb-3 text-slate-600 leading-relaxed"
             style={{ animationDelay: "0.25s" }}
           >
             Main ek MERN Stack Developer hoon jo React, Node.js, Express aur
             MongoDB ke saath end-to-end web applications banata hai — database
-            design se lekar polished, production-ready UI tak. Har project ko
-            ek real product ki tarah treat karta hoon, sirf ek assignment ki
-            tarah nahi.
+            design se lekar polished, production-ready UI tak.
           </p>
           <p
-            className="reveal-item mb-6 text-slate-600 leading-relaxed"
+            className="reveal-item text-slate-600 leading-relaxed"
             style={{ animationDelay: "0.35s" }}
           >
             I care about clean architecture, performance, and code that the
-            next developer can actually read. That mindset is what let me take
-            a client from a blank page to a live, working product.
+            next developer can actually read — that mindset is what turns a
+            rough idea into a product people can rely on.
           </p>
-
-          {/* featured client work */}
-          <a
-            href="#projects"
-            className="reveal-item group mb-10 flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/60 hover:shadow-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-lg text-white">
-                🏥
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Prajnay Healthcare
-                </p>
-                <p className="text-sm text-slate-500">
-                  Live client project — full-stack healthcare platform, built
-                  end to end
-                </p>
-              </div>
-            </div>
-            <FiArrowUpRight className="h-5 w-5 shrink-0 text-slate-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-600" />
-          </a>
-
-          {/* stats grid */}
-          <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-4">
-            {stats.map(({ icon: Icon, value, suffix, label }, i) => (
-              <div
-                key={label}
-                className="reveal-item group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
-                style={{ animationDelay: `${0.55 + i * 0.08}s` }}
-              >
-                <Icon className="mb-2 h-5 w-5 text-blue-600 transition-transform duration-300 group-hover:scale-110" />
-                <p className="text-2xl font-bold text-slate-900">
-                  <Counter value={value} suffix={suffix} inView={leftInView} />
-                </p>
-                <p className="text-xs text-slate-500">{label}</p>
-              </div>
-            ))}
-          </div>
-
-          <div
-            className="reveal-item flex flex-wrap gap-4"
-            style={{ animationDelay: "0.9s" }}
-          >
-            <a
-              href="/resume.pdf"
-              download
-              className="rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-7 py-3.5 font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-600/30"
-            >
-              Download Resume
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full border border-slate-300 px-7 py-3.5 font-semibold text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500 hover:text-blue-600"
-            >
-              Let's Connect
-            </a>
-          </div>
         </div>
 
-        {/* Right — premium tilt photo card */}
+        {/* Feature cards */}
         <div
-          ref={rightRef}
-          className={`reveal-right mx-auto w-full max-w-sm ${rightInView ? "in-view" : ""}`}
-          style={{ perspective: "1000px" }}
+          ref={cardsRef}
+          className={`mt-16 grid grid-cols-1 gap-5 sm:grid-cols-3 ${cardsInView ? "in-view" : ""}`}
         >
-          <div className="relative">
+          {features.map(({ icon: Icon, title, desc }, i) => (
             <div
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="relative overflow-hidden rounded-3xl border-4 border-white bg-slate-100 shadow-2xl transition-transform duration-150 ease-out"
-              style={{
-                transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-              }}
+              key={title}
+              className="reveal-item group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-600/5"
+              style={{ animationDelay: `${0.1 + i * 0.12}s` }}
             >
-              <img
-                src="/about-photo.jpg"
-                alt="Vansh Verma"
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/25 via-transparent to-transparent" />
-              {/* glare that follows the cursor */}
-              <div
-                className="pointer-events-none absolute inset-0 opacity-60 mix-blend-overlay transition-opacity duration-150"
-                style={{
-                  background: `radial-gradient(circle at ${tilt.gx}% ${tilt.gy}%, rgba(255,255,255,0.55), transparent 45%)`,
-                }}
-              />
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-lg font-semibold text-slate-900">
+                {title}
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
             </div>
+          ))}
+        </div>
 
-            {/* floating featured-project badge */}
-            <div className="anim-floatCard absolute -bottom-6 -left-6 max-w-[13rem] rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-blue-600">
-                Featured Work
+        {/* Stats row */}
+        <div
+          ref={statsRef}
+          className={`mt-16 grid grid-cols-2 gap-4 border-y border-slate-200 py-10 sm:grid-cols-4 ${
+            statsInView ? "in-view" : ""
+          }`}
+        >
+          {stats.map(({ value, suffix, label }, i) => (
+            <div
+              key={label}
+              className="reveal-item text-center"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              <p className="bg-gradient-to-br from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
+                <Counter value={value} suffix={suffix} inView={statsInView} />
               </p>
-              <p className="text-sm font-semibold text-slate-900">
-                Prajnay Healthcare
-              </p>
+              <p className="mt-1 text-sm text-slate-500">{label}</p>
             </div>
-          </div>
+          ))}
+        </div>
+
+        {/* CTA buttons */}
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="/resume.pdf"
+            download
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/35"
+          >
+            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+            <FiDownload className="h-4 w-4" />
+            <span className="relative">Download Resume</span>
+          </a>
+
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-slate-300 px-8 py-3.5 font-semibold text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500"
+          >
+            <span className="absolute inset-0 origin-bottom scale-y-0 bg-blue-50 transition-transform duration-300 group-hover:scale-y-100" />
+            <span className="relative transition-colors duration-300 group-hover:text-blue-600">
+              Let's Connect
+            </span>
+            <FiArrowUpRight className="relative h-4 w-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-600" />
+          </a>
         </div>
       </div>
     </section>

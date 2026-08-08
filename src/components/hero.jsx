@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaGlobe } from "react-icons/fa";
- import vanshu from "../assets/vanshu.jpeg";
+ import vanshu from "../assets/v2.jpeg";
 
 const roles = [
   "scalable web apps.",
@@ -10,10 +10,10 @@ const roles = [
 ];
 
 const socials = [
-  { icon: FaGithub, href: "https://github.com/vanshverma", label: "GitHub" },
-  { icon: FaLinkedin, href: "https://linkedin.com/in/vanshverma", label: "LinkedIn" },
-  { icon: FaGlobe, href: "https://vanshverma.dev", label: "Portfolio" },
-  { icon: FaInstagram, href: "https://instagram.com/vanshverma", label: "Instagram" },
+  { icon: FaGithub, href: "https://github.com/vansh-verma-dev", label: "GitHub" },
+  { icon: FaLinkedin, href: "", label: "LinkedIn" },
+  { icon: FaGlobe, href: "", label: "Portfolio" },
+  { icon: FaInstagram, href: "", label: "Instagram" },
 ];
 
 export default function Hero() {
