@@ -47,7 +47,7 @@ function useInView() {
   return [ref, inView];
 }
 
-export default function Contact() {
+export default function ContactSection() {
   const [headRef, headInView] = useInView();
   const [gridRef, gridInView] = useInView();
 

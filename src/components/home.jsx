@@ -1,5 +1,5 @@
 import About from "./about";
-import Contact from "./contact";
+import ContactSection from "./contactSection";
 import Education from "./education";
 import Experience from "./exprience";
 import ContactAndFooter from "./footer";
@@ -19,7 +19,7 @@ function Home(){
          <Projects/>
          <Education/>
          <Experience/>
-        <ContactAndFooter/>
+         <ContactSection/>
         </>
     )
 }
