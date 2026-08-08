@@ -37,14 +37,14 @@ const projects = [
     accent: "#f97316",
   },
   {
-    title: "Weather Dashboard",
+    title: "JSMaster Learning Platform",
     description:
       "A responsive weather app that fetches live data from a public API and displays forecasts with smooth transitions.",
     tags: ["JavaScript", "REST API", "CSS3"],
     image:
       "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=800&auto=format&fit=crop",
-    live: "#",
-    github: "#",
+    live: "https://jsmaster-app.onrender.com",
+    github: "https://github.com/vansh-verma-dev/JSMaster-App",
     accent: "#4ade80",
   },
 ];
