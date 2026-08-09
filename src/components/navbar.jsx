@@ -99,9 +99,11 @@ const Navbar = () => {
         </ul>
 
         <div className="px-8 mt-5">
-          <button className="w-full py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold duration-300">
+         <a href="Contact">
+           <button className="w-full py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold duration-300">
             Let's Talk
           </button>
+         </a>
         </div>
       </div>
 

@@ -12,16 +12,16 @@ import {
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const contactInfo = [
-  { icon: FiMail, label: "Email", value: "vansh.verma@example.com", href: "mailto:vansh.verma@example.com" },
-  { icon: FiPhone, label: "Phone", value: "+91 00000 00000", href: "tel:+910000000000" },
-  { icon: FiMapPin, label: "Location", value: "Saharanpur, Uttar Pradesh, India", href: null },
+  { icon: FiMail, label: "Email", value: "vanshrakesh67@gmail.com", href: "mailto:vanshrakesh67@gmail.com" },
+  { icon: FiPhone, label: "Phone", value: "+91 9368549887", href: "tel:+919368549887" },
+  { icon: FiMapPin, label: "Location", value: "Meerut, Uttar Pradesh, India", href: null },
 ];
 
 const socials = [
-  { icon: FaGithub, href: "https://github.com/vanshverma", label: "GitHub" },
-  { icon: FaLinkedin, href: "https://linkedin.com/in/vanshverma", label: "LinkedIn" },
-  { icon: FiGlobe, href: "https://vanshverma.dev", label: "Portfolio" },
-  { icon: FaInstagram, href: "https://instagram.com/vanshverma", label: "Instagram" },
+  { icon: FaGithub, href: "https://github.com/vansh-verma-dev", label: "GitHub" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/vansh-verma-b2a6a3373/", label: "LinkedIn" },
+  { icon: FiGlobe, href: "https://vansh-dev.onrender.com", label: "Portfolio" },
+  { icon: FaInstagram, href: "https://instagram.com/igvanshverma", label: "Instagram" },
 ];
 
 function useInView() {
