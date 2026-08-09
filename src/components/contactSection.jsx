@@ -5,11 +5,11 @@ import {
   FiMapPin,
   FiSend,
   FiCheck,
-  FiGithub,
-  FiLinkedin,
-  FiInstagram,
   FiGlobe,
+  FiUser,
+  FiMessageSquare,
 } from "react-icons/fi";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const contactInfo = [
   { icon: FiMail, label: "Email", value: "vansh.verma@example.com", href: "mailto:vansh.verma@example.com" },
@@ -18,10 +18,10 @@ const contactInfo = [
 ];
 
 const socials = [
-  { icon: FiGithub, href: "https://github.com/vanshverma", label: "GitHub" },
-  { icon: FiLinkedin, href: "https://linkedin.com/in/vanshverma", label: "LinkedIn" },
+  { icon: FaGithub, href: "https://github.com/vanshverma", label: "GitHub" },
+  { icon: FaLinkedin, href: "https://linkedin.com/in/vanshverma", label: "LinkedIn" },
   { icon: FiGlobe, href: "https://vanshverma.dev", label: "Portfolio" },
-  { icon: FiInstagram, href: "https://instagram.com/vanshverma", label: "Instagram" },
+  { icon: FaInstagram, href: "https://instagram.com/vanshverma", label: "Instagram" },
 ];
 
 function useInView() {
@@ -67,7 +67,6 @@ export default function ContactSection() {
     setTimeout(() => {
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
     }, 1200);
   };
 
@@ -94,22 +93,39 @@ export default function ContactSection() {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(-18px, 16px) scale(1.06); }
         }
-        @keyframes popIn {
-          from { opacity: 0; transform: scale(0.8); }
-          to { opacity: 1; transform: scale(1); }
+        @keyframes spinSlow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes popScale {
+          0% { opacity: 0; transform: scale(0.6); }
+          60% { opacity: 1; transform: scale(1.08); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes ringPulse {
+          0% { transform: scale(0.9); opacity: 0.6; }
+          100% { transform: scale(1.5); opacity: 0; }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         .reveal-item { opacity: 0; }
         .in-view .reveal-item { animation: fadeUpBlur 0.75s ease forwards; }
         .reveal-left { opacity: 0; }
-        .reveal-left.in-view { animation: fadeRight 0.8s ease forwards; }
+        .in-view .reveal-left { animation: fadeRight 0.8s ease forwards; }
         .reveal-form { opacity: 0; }
-        .reveal-form.in-view { animation: fadeLeft 0.8s ease forwards; }
+        .in-view .reveal-form { animation: fadeLeft 0.8s ease forwards; }
         .anim-blob1 { animation: floatBlob 12s ease-in-out infinite; }
         .anim-blob2 { animation: floatBlob2 14s ease-in-out infinite; }
-        .anim-popIn { animation: popIn 0.4s ease forwards; }
+        .anim-spin-slow { animation: spinSlow 18s linear infinite; }
+        .anim-popScale { animation: popScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .anim-ringPulse { animation: ringPulse 1.6s ease-out infinite; }
+        .anim-fadeIn { animation: fadeIn 0.4s ease forwards; }
         @media (prefers-reduced-motion: reduce) {
           .reveal-item, .reveal-left, .reveal-form { opacity: 1 !important; }
-          .in-view .reveal-item, .reveal-left.in-view, .reveal-form.in-view, .anim-blob1, .anim-blob2, .anim-popIn {
+          .in-view .reveal-item, .in-view .reveal-left, .in-view .reveal-form,
+          .anim-blob1, .anim-blob2, .anim-spin-slow, .anim-popScale, .anim-ringPulse, .anim-fadeIn {
             animation: none !important; transform: none !important; filter: none !important;
           }
         }
@@ -126,7 +142,7 @@ export default function ContactSection() {
             className="reveal-item inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[3px] text-blue-700"
             style={{ animationDelay: "0.05s" }}
           >
-            <span className="h-2 w-2 rounded-full bg-blue-500" />
+            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
             Contact
           </p>
 
@@ -196,83 +212,125 @@ export default function ContactSection() {
           </div>
 
           {/* Right — form */}
-          <div className="reveal-form rounded-3xl border border-slate-200 bg-white p-7 shadow-lg shadow-slate-200/50 sm:p-9">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-slate-700">
-                    Your Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="Aman Sharma"
-                    required
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-slate-700">
-                    Your Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    required
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
-                  />
-                </div>
-              </div>
+          <div className="reveal-form relative">
+            {/* decorative rotating ring, corner accent */}
+            <div
+              className="anim-spin-slow pointer-events-none absolute -right-6 -top-6 h-16 w-16 rounded-full opacity-70"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #2563eb, #6366f1, transparent, #2563eb)",
+                WebkitMask:
+                  "radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2.5px))",
+                mask:
+                  "radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2.5px))",
+              }}
+            />
 
-              <div>
-                <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-slate-700">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Tell me about your project..."
-                  required
-                  className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
-                />
-              </div>
+            <div className="group/card relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-lg shadow-slate-200/50 transition-shadow duration-300 focus-within:shadow-xl focus-within:shadow-blue-600/10 sm:p-9">
+              {/* subtle focus glow */}
+              <div className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 ring-2 ring-blue-500/20 transition-opacity duration-300 group-focus-within/card:opacity-100" />
 
-              <button
-                type="submit"
-                disabled={status !== "idle"}
-                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/35 disabled:cursor-not-allowed disabled:opacity-90 disabled:hover:translate-y-0"
-              >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                {status === "idle" && (
-                  <>
-                    <span className="relative">Send Message</span>
-                    <FiSend className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </>
-                )}
-                {status === "sending" && (
-                  <>
-                    <span className="relative h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
-                    <span className="relative">Sending...</span>
-                  </>
-                )}
-                {status === "sent" && (
-                  <>
-                    <FiCheck className="anim-popIn relative h-4 w-4" />
-                    <span className="relative">Message Sent</span>
-                  </>
-                )}
-              </button>
-            </form>
+              {status === "sent" ? (
+                <div className="anim-fadeIn flex flex-col items-center justify-center py-10 text-center">
+                  <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30">
+                    <span className="anim-ringPulse absolute inset-0 rounded-full border-2 border-blue-400" />
+                    <FiCheck className="anim-popScale h-7 w-7" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900">
+                    Message Sent!
+                  </h3>
+                  <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-500">
+                    Thanks for reaching out — I'll read it and get back to you
+                    soon.
+                  </p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-6 text-sm font-semibold text-blue-600 transition-colors duration-300 hover:text-blue-700"
+                  >
+                    Send another message →
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-slate-700">
+                        Your Name
+                      </label>
+                      <div className="relative">
+                        <FiUser className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder="Aman Sharma"
+                          required
+                          className="w-full rounded-xl border border-slate-200 bg-slate-50/60 py-3 pl-10 pr-4 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-slate-700">
+                        Your Email
+                      </label>
+                      <div className="relative">
+                        <FiMail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder="you@example.com"
+                          required
+                          className="w-full rounded-xl border border-slate-200 bg-slate-50/60 py-3 pl-10 pr-4 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-slate-700">
+                      Message
+                    </label>
+                    <div className="relative">
+                      <FiMessageSquare className="pointer-events-none absolute left-3.5 top-4 h-4 w-4 text-slate-400" />
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={5}
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="Tell me about your project..."
+                        required
+                        className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/60 py-3 pl-10 pr-4 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/35 disabled:cursor-not-allowed disabled:opacity-90 disabled:hover:translate-y-0"
+                  >
+                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                    {status === "sending" ? (
+                      <>
+                        <span className="relative h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                        <span className="relative">Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="relative">Send Message</span>
+                        <FiSend className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>

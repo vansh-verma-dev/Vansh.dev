@@ -20,6 +20,7 @@ function Home(){
          <Education/>
          <Experience/>
          <ContactSection/>
+         <Footer/>
         </>
     )
 }
