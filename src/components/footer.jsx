@@ -7,7 +7,7 @@ const socials = [
 ];
 
 function Footer() {
-  const year = new Date().getFullYear();
+  const year =  2025
 
   return (
     <footer className="border-t border-slate-200 bg-white px-6 py-6 text-slate-900">

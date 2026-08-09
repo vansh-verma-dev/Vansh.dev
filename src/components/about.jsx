@@ -1,24 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FiCode, FiLayers, FiZap, FiDownload, FiArrowUpRight } from "react-icons/fi";
 
-const features = [
-  {
-    icon: FiLayers,
-    title: "End-to-End Ownership",
-    desc: "From MongoDB schema design to a deployed, polished UI — I own the full stack of a feature, not just one layer of it.",
-  },
-  {
-    icon: FiCode,
-    title: "Clean, Scalable Code",
-    desc: "Code that's easy to read, test, and extend. I write for the next developer who touches it — often that's future me.",
-  },
-  {
-    icon: FiZap,
-    title: "Fast, Reliable Delivery",
-    desc: "I ship quickly without cutting corners on performance, security, or the small details that make a product feel solid.",
-  },
-];
-
+ 
 const stats = [
   { value: 30, suffix: "+", label: "Projects Completed" },
   { value: 8, suffix: "+", label: "Technologies" },
@@ -139,41 +122,18 @@ export default function About() {
             className="reveal-item mb-3 text-slate-600 leading-relaxed"
             style={{ animationDelay: "0.25s" }}
           >
-            Main ek MERN Stack Developer hoon jo React, Node.js, Express aur
-            MongoDB ke saath end-to-end web applications banata hai — database
-            design se lekar polished, production-ready UI tak.
+           I’m Vansh Verma, a Full Stack Developer focused on building modern, responsive, and user-friendly web applications. I enjoy turning ideas into real-world products using technologies like JavaScript, React, Node.js, Express.js, and MongoDB. I’ve worked on projects ranging from business websites and accounting software to learning platforms,
+
           </p>
           <p
             className="reveal-item text-slate-600 leading-relaxed"
             style={{ animationDelay: "0.35s" }}
           >
-            I care about clean architecture, performance, and code that the
-            next developer can actually read — that mindset is what turns a
-            rough idea into a product people can rely on.
+        where I focus on clean UI, practical functionality, and a smooth user experience. I’m continuously improving my backend and problem-solving skills while exploring new technologies and building projects that solve real problems.
           </p>
         </div>
 
-        {/* Feature cards */}
-        <div
-          ref={cardsRef}
-          className={`mt-16 grid grid-cols-1 gap-5 sm:grid-cols-3 ${cardsInView ? "in-view" : ""}`}
-        >
-          {features.map(({ icon: Icon, title, desc }, i) => (
-            <div
-              key={title}
-              className="reveal-item group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-600/5"
-              style={{ animationDelay: `${0.1 + i * 0.12}s` }}
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                {title}
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
-            </div>
-          ))}
-        </div>
+     
 
         {/* Stats row */}
         <div
