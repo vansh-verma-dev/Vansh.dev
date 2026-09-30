@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FiCode, FiLayers, FiZap, FiDownload, FiArrowUpRight } from "react-icons/fi";
-
+import resume from "../assets/Resume.pdf"
  
 const stats = [
   { value: 30, suffix: "+", label: "Projects Completed" },
@@ -159,7 +159,7 @@ export default function About() {
         {/* CTA buttons */}
         <div className="mt-14 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="/resume.pdf"
+            href={resume}
             download
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/35"
           >
