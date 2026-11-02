@@ -20,7 +20,7 @@ export default function Hero() {
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
 
-  // Typing animation effect
+ 
   useEffect(() => {
     const current = roles[roleIndex];
     const speed = deleting ? 35 : 75;
