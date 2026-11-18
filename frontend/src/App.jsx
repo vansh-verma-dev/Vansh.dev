@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Splash from "./components/Splash";
-import HomePage from "./pages/HomePage";
+import HomePage from "./page/HomePage";
 
 
 function App() {
