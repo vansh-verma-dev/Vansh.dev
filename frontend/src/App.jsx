@@ -3,8 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Splash from "./components/Splash";
 import HomePage from "./pages/HomePage";
 
+
 function App() {
-  // Splash sirf tab dikhao jab is session mein pehle nahi dikhi
+ 
   const [showSplash, setShowSplash] = useState(
     () => !sessionStorage.getItem("splashShown")
   );
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<HomePage/>} />
     </Routes>
   );
 }
