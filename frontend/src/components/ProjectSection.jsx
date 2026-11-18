@@ -1,5 +1,5 @@
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import { projectsData } from  '../dataFiles/ProjectData';
+import  projectsData  from  '../dataFiles/ProjectData';
 
 function Projects() {
   return (
