@@ -5,6 +5,8 @@ import {
   FaLaptopCode,
   FaServer,
 } from "react-icons/fa";
+import cv from "../assits/Vansh_Verma_MERN_CV.pdf";
+
 
 function HeroSection() {
   const frontend = ["HTML", "CSS", "JavaScript", "React.js", "Tailwind", "Bootstrap"];
@@ -134,8 +136,8 @@ function HeroSection() {
           </Link>
 
           <a
-            href="/Vansh_Verma_CV.pdf"
-            download
+            href={cv}
+            download="Vansh_Verma_CV.pdf"
             className="flex items-center gap-2 border border-white/20 px-6 py-3 rounded-full hover:border-amber-400 hover:text-amber-400 transition"
           >
             Download CV <FaDownload />
